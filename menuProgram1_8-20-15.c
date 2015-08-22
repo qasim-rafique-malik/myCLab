@@ -6,48 +6,93 @@
 //functions prototype block start
 int mainMenu();
 int authUser();
- 
-
+void BalanceInquire(int *userBalance);
+int withdrawCash(int *userBalance);
+void cashDeposit(int *);
 //function prototype block end
+
 void main(){ //Strat main body
 	
 	int userVal;
 	int authVarification;
-	while(1)
-	{// while body start
+	int fail 				= 0; 
+	int treminatorVar 		= 0;
+	int noCLS				= 0;
+	int userAmountArray[2]	= {2000,500};
+	
+	while(fail < 3 && treminatorVar == 0){// while body start
 		fflush(stdin);
-		authVarification = authUser();
-		if(authVarification)
-		{// if body start
+		authVarification 		= authUser();	
+		if(authVarification){// if body start
 			system("cls");
-			userVal = mainMeun();
-			switch(userVal){ // switch body start
-				case 1:
-					printf("i am in case one");
-					break;
-				case 2:
-					printf("i am in case two");
-					break;
-				case 3:
-					printf("i am in case three");
-					break;
-				case 4: 
-					printf("i am in case 4");
-					break;
-				default:
-					printf("i am in defualt");
+			while(treminatorVar == 0){// while body start
 			
-			
-			} // switch body end
-		}// if body end
-		else
-		{//  else body start
+				fflush(stdin);	
+				userVal = mainMeun();
+				
+				switch(userVal){ // switch body start
+				
+					case 1:
+						system("cls");
+						BalanceInquire(userAmountArray);
+						break;
+					case 2:
+						
+						system("cls");
+						if(userAmountArray[1] <= 0){
+							printf("you have reached maximum trasaction please take you card and try after 24 hour ");
+							noCLS = 1;
+							treminatorVar = 1;
+						}
+						else{
+							withdrawCash(userAmountArray);
+							system("cls");
+						}
+						break;
+						
+					case 3:
+						//printf("coming soon\n");
+						cashDeposit(userAmountArray);
+						break;
+					case 4: 
+						system("cls");
+						treminatorVar = 1;
+						break;
+					default:
+						system("cls");
+						printf("You have entered Invalid number\n");
+						break;
+				
+				} // switch body end
+				
+			}// while body end
+		}// if body end	
+		else{//else body start
+		
 			system("cls");
 			printf("You Entered Wrong Pin Number\n");
+			fail++;	
+								
 		}// else body end
-		
-	}// while body end	
-	printf("i am  in main body");
+	}// while body start
+	if(fail == 3){ // fail if start
+	
+	system("cls");
+	printf("You have entered wrong pin thrice so we have taken you card for scurity \nplease visit your branch to take your card back");
+	
+	}//fial if end
+	if(noCLS == 1){
+		printf("\nThank You");
+	}else{
+		system("cls");
+		printf("Thank You");
+	}
+	/*if(treminatorVar == 1){
+		system("cls");
+		printf("Thank You");
+	}*/
+	
+	
 	
 }//end main body
 
@@ -60,14 +105,13 @@ void main(){ //Strat main body
 int authUser(){
 	int pinNumber = 1100;
 	int userPin;
+	printf("Welcome to the first self ATM\n \n");
 	printf("Please Enter your Pin Number: ");
 	scanf("%d",&userPin);
-	if(userPin == pinNumber)
-	{
+	if(userPin == pinNumber){
 		return 1;
 	}
-	else
-	{
+	else{
 		return 0;
 	}
 }
@@ -94,6 +138,134 @@ int mainMeun(){ // mainMeun function body start
 	return returnVar; //return to calling function
 	
 } // mainMeun function body end
+
+/*
+	Delaretion of function BalanceInquire
+
+	This fucntion will show user his/her total Ammount
+	and the maximum Ammount that he can Withdraw in 24 hours
+*/
+void BalanceInquire(int *userBalance ){ // BalanceInquire function body start
+	printf("You Total ammount is %d\n",*userBalance);
+	userBalance++;
+	printf("Maximum you Can withdraw %d\n",*userBalance);	
+} // BalanceInquire function body end
+
+/*
+	Delaretion of function withdrawCash
+	
+	This function will detect the amount from total amount
+	
+*/
+
+int withdrawCash(int *userBalance){ //function withdrawCash body start
+	int option[6] = {50,100,200,300,400,500};
+	int userVar;
+	int userMaxTotal = *userBalance;
+	userBalance++;
+	int userMinTotal = *userBalance;
+	userBalance--;
+	int termintorVar = 0;
+	printf("50\t 100\n");
+	printf("200\t 300\n");
+	printf("400\t 500\n");
+	
+	while(termintorVar == 0){//while body start
+	
+		fflush(stdin);
+		scanf("%d", &userVar);
+		
+		if(userMinTotal >= userVar){//if body start
+		
+			switch(userVar){//switch body start
+				
+				case 50:
+					
+					*userBalance 	= *userBalance-50;
+					userBalance++;
+					*userBalance 	= *userBalance-50;
+					printf("Please take your cash Press any key to contineu");
+					getch();
+					termintorVar	= 1;
+					break;
+					
+				case 100:
+					
+					*userBalance 	= *userBalance-100;
+					userBalance++;
+					*userBalance 	= *userBalance-100;
+					termintorVar	= 1;
+					break;
+					
+				case 200:
+					
+					*userBalance 	= *userBalance-200;
+					userBalance++;
+					*userBalance 	= *userBalance-200;
+					termintorVar	= 1;
+					break;
+					
+				case 300:
+					
+					*userBalance 	= *userBalance-300;
+					userBalance++;
+					*userBalance 	= *userBalance-300;
+					termintorVar	= 1;
+					break;
+					
+				case 400:
+					
+					*userBalance 	= *userBalance-400;
+					userBalance++;
+					*userBalance 	= *userBalance-400;
+					termintorVar	= 1;
+					break;
+					
+				case 500:
+					
+					*userBalance 	= *userBalance-500;
+					userBalance++;
+					*userBalance 	= *userBalance-500;
+					termintorVar	= 1;
+					break;
+					
+				default:
+					printf("You have entered wrong option please try again");
+						
+			}//switch body start
+		}//if body end
+		else{//else body start
+			system("cls");
+			printf("The amount is greater then the maximum amount you can withdraw\n");
+			printf("50\t 100\n");
+			printf("200\t 300\n");
+			printf("400\t 500\n");
+			printf("Please try again:");
+		}//else body end
+		
+	}//while body end
+	return 1;	
+}//function withdrawCash body end
+
+/*
+	Declaration of function cashDeposit
+	
+	This fucntion will add amount to total amount
+*/
+void cashDeposit(int *userBalance){//function cashDeposit body start
+	int userVar;
+	printf("Please enter the amount");
+	
+	scanf("%d",&userVar);
+	*userBalance 	= *userBalance+userVar;
+	userBalance++;
+	*userBalance 	= *userBalance+userVar;
+
+}//function cashDeposit body end
+
+ 
+
+
 
 
 
