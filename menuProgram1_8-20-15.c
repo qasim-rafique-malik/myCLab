@@ -51,8 +51,9 @@ void main(){ //Strat main body
 						break;
 						
 					case 3:
-						//printf("coming soon\n");
+						system("cls");
 						cashDeposit(userAmountArray);
+						system("cls");
 						break;
 					case 4: 
 						system("cls");
@@ -184,7 +185,7 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-50;
 					userBalance++;
 					*userBalance 	= *userBalance-50;
-					printf("Please take your cash Press any key to contineu");
+					printf("Please take your cash and Press any key to return main menu");
 					getch();
 					termintorVar	= 1;
 					break;
@@ -194,6 +195,8 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-100;
 					userBalance++;
 					*userBalance 	= *userBalance-100;
+					printf("Please take your cash and Press any key to return main menu");
+					getch();
 					termintorVar	= 1;
 					break;
 					
@@ -202,6 +205,8 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-200;
 					userBalance++;
 					*userBalance 	= *userBalance-200;
+					printf("Please take your cash and Press any key to return main menu");
+					getch();
 					termintorVar	= 1;
 					break;
 					
@@ -210,6 +215,8 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-300;
 					userBalance++;
 					*userBalance 	= *userBalance-300;
+					printf("Please take your cash and Press any key to return main menu");
+					getch();
 					termintorVar	= 1;
 					break;
 					
@@ -218,6 +225,8 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-400;
 					userBalance++;
 					*userBalance 	= *userBalance-400;
+					printf("Please take your cash and Press any key to return main menu");
+					getch();
 					termintorVar	= 1;
 					break;
 					
@@ -226,6 +235,8 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 					*userBalance 	= *userBalance-500;
 					userBalance++;
 					*userBalance 	= *userBalance-500;
+					printf("Please take your cash and Press any key to return main menu");
+					getch();
 					termintorVar	= 1;
 					break;
 					
@@ -254,13 +265,12 @@ int withdrawCash(int *userBalance){ //function withdrawCash body start
 */
 void cashDeposit(int *userBalance){//function cashDeposit body start
 	int userVar;
-	printf("Please enter the amount");
+	printf("Please enter the amount: ");
 	
 	scanf("%d",&userVar);
 	*userBalance 	= *userBalance+userVar;
-	userBalance++;
-	*userBalance 	= *userBalance+userVar;
-
+	printf("Your balance is updated press any key to return main meun\n");
+	getch();
 }//function cashDeposit body end
 
  
