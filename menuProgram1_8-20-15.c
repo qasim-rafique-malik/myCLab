@@ -1,7 +1,6 @@
 //header files block start
 #include<stdio.h> 
 #include<conio.h>
-#include<string.h>
 //header files block end
 //functions prototype block start
 int mainMenu();
